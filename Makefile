@@ -8,16 +8,23 @@
 SRC	=	src/strlen.asm		\
 		src/strchr.asm		\
 		src/strrchr.asm		\
-		src/memset.asm
+		src/memset.asm		\
+		src/memcpy.asm
 
 OBJ	=	$(SRC:.asm=.o)
+
+SRC_TESTS	=	tests/tests.c
+
+NAME_TESTS	=	unit_tests
+
+OBJ_TESTS	=	$(SRC_TESTS:.c=.o)
 
 %.o: %.asm
 	nasm -f elf64 $<
 
 LDFLAGS	=	-L.
 
-LDLIBS	=	-lasm
+LDLIBS	=	-lasm -lcriterion -lgcov
 
 NAME	=	libasm.so
 
@@ -27,12 +34,19 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	ld -shared -fPIC -o $(NAME) $(OBJ)
 
+tests_run:
+	gcc -o $(NAME_TESTS) $(OBJ_TESTS) $(LDFLAGS) $(LDLIBS)
+	-./$(NAME_TESTS)
+.PHONY: tests_run
+
 clean:
 	find -name "*.o" -delete
+	find -name "*.gc*" -delete
 .PHONY:	clean
 
 fclean:	clean
 	rm -f $(NAME)
+	rm -f $(NAME_TESTS)
 .PHONY:	fclean
 
 re: fclean all
