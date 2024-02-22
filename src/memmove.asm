@@ -7,9 +7,15 @@ section .text
 ; rsi = src
 ; rdx = copied size
 
-global memcpy
-    memcpy:
+global memmove
+    memmove:
         xor rax, rax
+        cmp rdi, rsi
+        je .loop
+        mov r8, rdi
+        mov rdi, rsi
+        mov rsi, r8
+        jmp .loop
 
     .loop:
         cmp rdx, 0x0
@@ -22,4 +28,3 @@ global memcpy
     .end:
         mov rax, rdi
         ret
-

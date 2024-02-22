@@ -1,18 +1,18 @@
 
-BITS 64                             ; architecture 64
+BITS 64
 
-section .text                       ; coding section
+section .text
 
 ; rdi = first string
 ; rsi = second string
 
-global strcmp                       ; definition of memset function
+global strcmp
     strcmp:
         xor rax, rax
         mov rcx, -1
         mov r8, 0x0
         mov r9, 0x0
-        
+
     .loop:
         inc rcx
         cmp byte [rdi + rcx], 0x0
