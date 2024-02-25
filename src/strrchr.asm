@@ -16,7 +16,7 @@ global strrchr
     .loop:
         cmp byte [rdi + rax], sil
         je .cmp_true
-        cmp byte [rdi], 0x0
+        cmp rax, 0
         je .end_str
         sub rax, 1
         jmp .loop
