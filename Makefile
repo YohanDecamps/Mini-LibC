@@ -15,7 +15,8 @@ SRC	=	src/strlen.asm		\
 		src/strncmp.asm		\
 		src/strcasecmp.asm	\
 		src/strstr.asm		\
-		src/strpbrk.asm
+		src/strpbrk.asm		\
+		src/strcspn.asm
 
 OBJ	=	$(SRC:.asm=.o)
 
