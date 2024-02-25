@@ -16,6 +16,8 @@ global strchr
         jmp .loop
 
     .end_str:
+        cmp byte sil, 0x0
+        je .cmp_true
         mov rax, 0x0
         ret
 
