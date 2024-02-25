@@ -16,6 +16,16 @@ global strstr
         mov r11, rdi
         mov rdx, 0
 
+    .test_empty:
+        cmp byte [rdi], 0x0
+        je .test_snd_empty
+        jmp .loop_strlen
+
+    .test_snd_empty:
+        cmp byte [rsi], 0x0
+        je .end_true
+        jmp .loop_strlen
+
     .loop_strlen:
         cmp byte [rsi + rdx], 0x0
         je .main_loop
