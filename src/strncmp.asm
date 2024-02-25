@@ -17,7 +17,7 @@ global strncmp
     .loop:
         inc rcx
         cmp rdx, rcx
-        jle .end
+        jle .end_true
         cmp byte [rdi + rcx], 0x0
         je .end
         cmp byte [rsi + rcx], 0x0
