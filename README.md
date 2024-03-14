@@ -1,5 +1,7 @@
 # Mini LibC
 
+Second Year Epitech Project
+
 ## Assignement
 
 Recode 12 of the C standard library functions in Assembly x86-64.
